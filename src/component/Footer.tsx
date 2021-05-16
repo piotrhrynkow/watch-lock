@@ -11,7 +11,7 @@ function Footer(props: {
   version: string | null;
   setConfigVersion: (payload: string) => void;
 }) {
-  const { author, version: packageVersion } = packageData;
+  const { homepage, version: packageVersion } = packageData;
   const { version, setConfigVersion } = props;
   if (!version) {
     setConfigVersion(packageVersion);
@@ -22,7 +22,7 @@ function Footer(props: {
       <footer>
         <span
           className="clickable"
-          onClick={() => shell.openExternal(author.url)}
+          onClick={() => shell.openExternal(homepage)}
         >
           <FA icon={faGithub} /> {version}
         </span>
