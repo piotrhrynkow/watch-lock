@@ -66,6 +66,7 @@ const PackageSelectForm = (props: {
           </div>
           <div className="select-add">
             <input
+              className="green"
               type="submit"
               value="Add"
               disabled={isSubmitting || !listPackOptions.length}
