@@ -1,0 +1,26 @@
+.backup {
+  > div.row {
+    > div {
+      display: inline-block;
+
+      &.icon {
+        width: 3%;
+        > div.round-icon {
+          width: 80%;
+        }
+      }
+      &.select {
+        width: 27%;
+      }
+      &.path {
+        width: 55%;
+      }
+      &.status {
+        width: 10%;
+      }
+      &.action {
+        width: 5%;
+      }
+    }
+  }
+}

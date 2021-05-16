@@ -1,0 +1,94 @@
+$font-size: 2vw;
+
+@import 'colors';
+@import 'common';
+@import 'form';
+@import 'progress-bar';
+@import 'loading';
+@import 'list';
+@import 'log';
+@import 'settings';
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(../fonts/roboto-regular.ttf) format('ttf');
+}
+
+@mixin dot-shape($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  background-color: $dark-gray-color;
+  font-family: 'Roboto', sans-serif;
+  color: $gray-light-color;
+  cursor: default;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: $gray-light-color;
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+}
+
+table {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-image: none;
+}
+
+table.table-projects {
+  width: 100%;
+  background-color: $gray-color;
+  font-size: $font-size;
+
+  tr {
+    border: solid $gray-separator-color;
+    border-width: 1px 0;
+
+    &:first-child {
+      border-top: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+
+    td {
+      padding: 2%;
+
+      .icon {
+        margin: 0 5%;
+      }
+    }
+  }
+}
+
+.welcome {
+  img.logo {
+    width: 30vw;
+  }
+}
+
+.color {
+  &-success {
+    color: $green-color
+  }
+  &-danger {
+    color: $red-light-color;
+  }
+}

@@ -1,0 +1,115 @@
+input[type=text] {
+  border: 0;
+  outline: none;
+  border-radius: 10px;
+  padding: 4%;
+  background-color: $dark-gray-color;
+  color: $gray-light-color;
+  font-size: $font-size;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+label.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 3%;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &.inline {
+    display: inline-block;
+    width: 2vw;
+    margin: 0 1vw;
+    padding-left: 0;
+  }
+
+  > input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  > span.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2vw;
+    width: 2vw;
+    background-color: $gray-light-color;
+    border-radius: 0.2vw;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 0.55vw;
+      bottom: 0.45vw;
+      width: 0.6vw;
+      height: 1.2vw;
+      border: solid $white-color;
+      border-width: 0 0.4vw 0.4vw 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover input ~ .checkmark {
+    background-color: $gray-light-color
+  }
+
+  > input:checked ~ .checkmark {
+    background-color: $green-color;
+
+    &:after {
+      display: block;
+    }
+  }
+}
+
+.form {
+  .row {
+    background-color: $gray-color;
+
+    div.select {
+      padding: 2%;
+      display: inline-block;
+
+      &-file {
+        @extend div.select;
+        width: 76%;
+      }
+      &-add {
+        @extend div.select;
+        width: 16%;
+      }
+    }
+  }
+
+  button {
+    border: 0;
+    &:focus {
+      outline: 0;
+    }
+    &:disabled, &[disabled] {
+
+    }
+  }
+
+  input {
+    &[type="submit"] {
+      &:disabled {
+
+      }
+    }
+
+  }
+}

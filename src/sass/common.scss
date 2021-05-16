@@ -1,0 +1,145 @@
+.hidden {
+  display: none;
+}
+
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
+
+.main {
+  width: 100%;
+
+  h1 {
+    padding: 0 1%;
+    font-size: 3vw;
+  }
+}
+
+@mixin no-highlight {
+  user-select: none;
+}
+
+.common {
+  &.row {
+    width: 96%;
+    padding: 2%;
+    background-color: $gray-color;
+    font-size: 2vw;
+
+    .round-icon {
+      width: 2.4%;
+      position: relative;
+      border-radius: 50%;
+      display: inline-block;
+      background-color: $gray-light-color;
+      color: $gray-color;
+
+      > .icon {
+        &-folder-open {
+          font-size: 1.7vw;
+          position: relative;
+          left: 13%;
+        }
+      }
+    }
+  }
+
+  &.center {
+    height: 100vh;
+    position: relative;
+
+    > .centered {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.text-center {
+    text-align: center;
+  }
+}
+
+#root {
+  min-height: 100%;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  background-color: $gray-color;
+  font-size: 2.5vw;
+  @include no-highlight;
+
+  > nav {
+    > ul {
+      width: 50%;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      > li {
+        display: inline;
+        padding: 5%;
+
+        &:hover {
+          background-color: $gray-active-color;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  width: 96%;
+  background-color: $gray-color;
+  font-size: 2.5vw;
+  padding: 2%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+main {
+  padding-bottom: 10%;
+}
+
+.mt-1p {
+  margin-top: 1%;
+}
+.mb-1p {
+  margin-bottom: 1%;
+}
+.ml-1p {
+  margin-left: 1%;
+}
+.mr-1p {
+  margin-right: 1%;
+}
+.mb-5p {
+  margin-bottom: 5%;
+}
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clrb {
+  clear: both;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}

@@ -1,0 +1,76 @@
+div.list {
+  div.row {
+    width: 96%;
+    padding: 2%;
+    margin-bottom: 0.3%;
+    background-color: $gray-color;
+    font-size: 2vw;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    > div {
+      display: inline-block;
+    }
+  }
+
+  &.pack {
+    &.main {
+      div.row {
+        > div {
+          &.name {
+            width: 60%;
+          }
+          &.hash {
+            width: 30%;
+          }
+          &.action {
+            width: 10%;
+          }
+        }
+      }
+    }
+
+    div.row {
+      > div {
+        &.name {
+          width: 90%;
+        }
+        &.action {
+          width: 10%;
+        }
+        &.project {
+          width: 100%;
+        }
+      }
+
+      div.label {
+        display: inline-block;
+        margin-top: 1%;
+        margin-right: 1%;
+        padding: 0.5%;
+        background-color: $gray-light-color;
+        color: $gray-color;
+        border-radius: 5px;
+
+        &.danger {
+          background-color: $red-light-color;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      &.linked {
+        width: 93%;
+        margin-left: 3%;
+
+        &:last-child {
+          margin-bottom: 2%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.log-bar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: $gray-color;
+
+  > .log {
+    padding: 2%;
+    margin-bottom: 0.5%;
+    background-color: $red-color;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    > div {
+      display: inline-block;
+
+      &.message {
+        width: 94%;
+      }
+
+      &.close {
+        width: 3%;
+        margin-left: 3%;
+        cursor: pointer;
+      }
+    }
+  }
+}

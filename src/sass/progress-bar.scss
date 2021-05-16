@@ -1,0 +1,20 @@
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(0.25turn, rgba(0,0,0,0) 50%, $green-color);
+  background-position: 200% 0%;
+  background-size: 200% 100%;
+
+  &.animated {
+    animation: progress 2s infinite linear;
+  }
+}
+
+@keyframes progress {
+	0% {
+		background-position: 200% 0%;
+	}
+  100% {
+    background-position: 0% 0%;
+  }
+}
