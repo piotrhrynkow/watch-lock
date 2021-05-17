@@ -1,4 +1,4 @@
-import simpleGit, { SimpleGit, GitError } from 'simple-git';
+import simpleGit, { SimpleGit, GitPluginError } from 'simple-git';
 
 export default class GitHelper {
   private readonly git: SimpleGit;
@@ -26,7 +26,7 @@ export default class GitHelper {
         return hash;
       }
     } catch (error) {
-      if (error instanceof GitError && error.plugin === 'timeout') { // change to GitPluginError https://github.com/steveukx/git-js/issues/616
+      if (error instanceof GitPluginError && error.plugin === 'timeout') {
         throw new Error(
           `Unable to fetch remote hash. Check internet connection or credentials in ${this.directoryPath}`
         );
