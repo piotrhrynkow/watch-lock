@@ -16,6 +16,7 @@ import { Store } from 'redux';
 import classnames from 'classnames';
 import simpleGit, { SimpleGit } from 'simple-git';
 import { useHistory } from 'react-router-dom';
+import { copyFile } from 'fs-extra';
 import {
   selectModelPacksWatched,
   selectModelProjectsWithRelations,
@@ -49,11 +50,10 @@ import JsonWriter, { WriterResult } from '../../service/json-writer';
 import { LockDiff, LockUpdated } from '../../model/types';
 import ProjectsSelector from '../../service/settings/projects-selector';
 import { ConfigBackup, State } from '../../store/types';
-import { copyFile } from 'fs-extra';
 import Backup from '../../service/backup';
 
 function PackWatchList(props: {
-  backup: ConfigBackup;
+  backup: ConfigBackup | null;
   packs: PackModelType[];
   projects: ProjectModelType[];
   addLockUpdated: (payload: LockUpdated) => void;
@@ -292,7 +292,7 @@ function PackWatchList(props: {
   const backupLocks = async (
     composerPacks: ComposerPackModelType[]
   ): Promise<void> => {
-    if (backup.directoryPath) {
+    if (backup?.directoryPath) {
       if (!backup.access.writable) {
         addLog({
           id: UUIDProvider.getStoreUUID(store),
