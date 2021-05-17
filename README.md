@@ -14,3 +14,4 @@ For building tips visit [Electron React Boilerplate](https://github.com/electron
 * Branch selecting
 * Commiting changes
 * Multi package selecting
+* Watching locks live
