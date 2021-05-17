@@ -8,7 +8,7 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGit } from '@fortawesome/free-brands-svg-icons';
-import { forEach, map } from 'lodash';
+import { forEach, map, sortBy } from 'lodash';
 import {
   removeComposerModel,
   removeComposerPackModel,
@@ -20,8 +20,9 @@ import {
   selectModelProjectsWithRelations,
   selectUpdatedAtProcessing,
 } from '../../store/selectors';
-import { State } from '../../store';
 import { ComposerPackModelType, ProjectModelType } from '../../model/orm/types';
+import ProjectsSelector from '../../service/settings/projects-selector';
+import { State } from '../../store/types';
 
 function ProjectList(props: {
   removeComposerModel: (id: string) => void;
@@ -35,10 +36,11 @@ function ProjectList(props: {
     removeProjectModel,
     setUpdatedAtProcessing,
   } = props;
-  const state = useStore().getState();
+  const store = useStore();
+  const state = store.getState();
   useSelector(selectUpdatedAtProcessing);
 
-  const removeProjectWithRelated = (project: ProjectModelType) => {
+  const removeProjectWithRelated = (project: ProjectModelType): void => {
     forEach(
       project.composer.composerPacks,
       (composerPack: ComposerPackModelType) => {
@@ -49,8 +51,21 @@ function ProjectList(props: {
     removeProjectModel(project.id);
   };
 
+  const hardResetProject = async (project: ProjectModelType): Promise<void> => {
+    removeProjectWithRelated(project);
+    const projectsSelector = new ProjectsSelector(store, [
+      project.rootDirectory.path,
+    ]);
+    await projectsSelector.process();
+    setUpdatedAtProcessing();
+  };
+
   const projects: ProjectModelType[] = selectModelProjectsWithRelations(state);
-  const listProjects = map(projects, (project: ProjectModelType) => (
+  const sortedProjects: ProjectModelType[] = sortBy(
+    projects,
+    (project: ProjectModelType) => project.rootDirectory.path
+  );
+  const listProjects = map(sortedProjects, (project: ProjectModelType) => (
     <tr key={project.id}>
       <td>{project.rootDirectory.path}</td>
       <td>
@@ -65,7 +80,11 @@ function ProjectList(props: {
         <Icon icon={faGit} isActive={project.git?.hasRepo} />
       </td>
       <td>
-        <FA icon={faSyncAlt} className="clickable" />{' '}
+        <FA
+          icon={faSyncAlt}
+          className="clickable"
+          onClick={() => hardResetProject(project)}
+        />{' '}
         <FA
           icon={faTrashAlt}
           className="clickable"

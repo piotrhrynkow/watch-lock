@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { filter, isString, map } from 'lodash';
+import { filter, isString, map, sortBy } from 'lodash';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { selectModelWatchedPacksWithRelations } from '../../store/selectors';
@@ -47,40 +47,47 @@ function PackWatchList(props: {
       return <div className="label danger">no projects</div>;
     }
     const shortPaths: string[] = CollectionShorter.short(paths);
-    return map(shortPaths, (path: string, index: number) => (
+    return map(shortPaths.sort(), (path: string, index: number) => (
       <div key={index} className="label">
         {path}
       </div>
     ));
   };
 
-  const listPacks = map(watchedPacks, (watchedPack: WatchedPackModelType) => (
-    <div key={watchedPack.id} className="row">
-      <div className="name">{watchedPack.name}</div>
-      <div className="action">
-        <label className="checkbox inline">
-          &nbsp;
-          <input
-            type="checkbox"
-            onChange={() => toggleWatchedPackModel(watchedPack.id)}
-            defaultChecked={watchedPack.enabled}
+  const sortedWatchedPacks: WatchedPackModelType[] = sortBy(
+    watchedPacks,
+    (watchedPack: WatchedPackModelType) => watchedPack.name
+  );
+  const listPacks = map(
+    sortedWatchedPacks,
+    (watchedPack: WatchedPackModelType) => (
+      <div key={watchedPack.id} className="row">
+        <div className="name">{watchedPack.name}</div>
+        <div className="action">
+          <label className="checkbox inline">
+            &nbsp;
+            <input
+              type="checkbox"
+              onChange={() => toggleWatchedPackModel(watchedPack.id)}
+              defaultChecked={watchedPack.enabled}
+            />
+            <span className="checkmark" />
+          </label>
+          <FA
+            icon={faTrashAlt}
+            className="clickable"
+            onClick={() => {
+              removeWatchedPackModel(watchedPack.id);
+              setUpdatedAtProcessing();
+            }}
           />
-          <span className="checkmark" />
-        </label>
-        <FA
-          icon={faTrashAlt}
-          className="clickable"
-          onClick={() => {
-            removeWatchedPackModel(watchedPack.id);
-            setUpdatedAtProcessing();
-          }}
-        />
+        </div>
+        <div className="project">
+          {listProjects(watchedPack.pack.composerPacks)}
+        </div>
       </div>
-      <div className="project">
-        {listProjects(watchedPack.pack.composerPacks)}
-      </div>
-    </div>
-  ));
+    )
+  );
 
   return (
     <>

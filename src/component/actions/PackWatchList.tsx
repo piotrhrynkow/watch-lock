@@ -1,7 +1,7 @@
 import { shell } from 'electron';
 import React, { useEffect, useRef, useState } from 'react';
 import { connect, useStore } from 'react-redux';
-import { debounce, filter, isString, map } from 'lodash';
+import { debounce, filter, isString, map, sortBy } from 'lodash';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import {
   faClock,
@@ -371,8 +371,13 @@ function PackWatchList(props: {
     const shortPaths: ShortMapCollection = CollectionShorter.shortMap(
       getPaths(composerPacks)
     );
+    const sortedComposerPacks: ComposerPackModelType[] = sortBy(
+      composerPacks,
+      (composerPack: ComposerPackModelType) =>
+        composerPack.composer.project.rootDirectory.path
+    );
 
-    return map(composerPacks, (composerPack: ComposerPackModelType) => (
+    return map(sortedComposerPacks, (composerPack: ComposerPackModelType) => (
       <div className="row linked" key={composerPack.composer.project?.id}>
         <p>
           <label className="checkbox">
@@ -417,7 +422,8 @@ function PackWatchList(props: {
     ));
   };
 
-  const listPacks = map(packs, (pack: PackModelType) => (
+  const sortedPacks = sortBy(packs, (pack: PackModelType) => pack.name);
+  const listPacks = map(sortedPacks, (pack: PackModelType) => (
     <div key={pack.id}>
       <div className="row">
         <div className="name">
