@@ -17,6 +17,7 @@ import classnames from 'classnames';
 import simpleGit, { SimpleGit } from 'simple-git';
 import { useHistory } from 'react-router-dom';
 import { copyFile } from 'fs-extra';
+import dayjs from 'dayjs';
 import {
   selectModelPacksWatched,
   selectModelProjectsWithRelations,
@@ -166,18 +167,6 @@ function PackWatchList(props: {
   };
 
   const onChangeHash = debounce(setHash, 500);
-
-  const parseDate = (date: Date): string => { // TODO https://dockyard.com/blog/2020/02/14/you-probably-don-t-need-moment-js-anymore
-    return date.toLocaleDateString('en-gb', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    });
-  };
-
-  const parseTime = (date: Date): string => {
-    return date.toLocaleTimeString();
-  };
 
   const getPaths = (composerPacks: ComposerPackModelType[]): string[] => {
     const paths: (string | undefined)[] = map(
@@ -414,8 +403,8 @@ function PackWatchList(props: {
         </p>
         {composerPack.time && (
           <p>
-            <FA icon={faClock} /> {parseDate(composerPack.time)} -{' '}
-            {parseTime(composerPack.time)}
+            <FA icon={faClock} />{' '}
+            {dayjs(composerPack.time).format('YYYY/MM/DD - HH:mm:ss')}
           </p>
         )}
       </div>
