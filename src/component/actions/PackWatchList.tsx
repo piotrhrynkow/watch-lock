@@ -276,6 +276,21 @@ function PackWatchList(props: {
     );
   };
 
+  const handleRepositoryUrl = (url: string): string => {
+    const gitAtFound = url.match(/^git@([^:]+):([^/]+\/[^.]+)\.git$/);
+    if (gitAtFound) {
+      const [data, host, packageName] = gitAtFound;
+      return `https://${host}/${packageName}`;
+    }
+    const gitEndFound = url.match(/^(.+)\.git$/);
+    if (gitEndFound) {
+      const [data, url] = gitEndFound;
+      return url;
+    }
+
+    return url;
+  };
+
   const deselectComposerPacks = (
     composerPacks: ComposerPackModelType[]
   ): void => {
@@ -409,7 +424,9 @@ function PackWatchList(props: {
           <span
             className="clickable"
             data-tip="Go to repository"
-            onClick={() => shell.openExternal(pack.sourceUrl)}
+            onClick={() =>
+              shell.openExternal(handleRepositoryUrl(pack.sourceUrl))
+            }
           >
             <FA icon={faCube} /> {pack.name}
           </span>
