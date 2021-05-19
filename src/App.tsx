@@ -6,6 +6,7 @@ import WelcomeMenu from './component/WelcomeMenu';
 import Initialization from './component/Initialization';
 import ActionList from './component/ActionList';
 import LockDiffViewer from './component/actions/LockDiffViewer';
+import DependencyTree from './component/DependencyTree';
 import Settings from './Settings';
 import configureStore, { history } from './store';
 
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/initialization" component={Initialization} />
             <Route path="/actions" exact component={ActionList} />
             <Route path="/actions/lock-diff/:id" component={LockDiffViewer} />
+            <Route path="/dependency-tree" component={DependencyTree} />
             <Route path="/settings" component={Settings} />
           </Switch>
         </Router>

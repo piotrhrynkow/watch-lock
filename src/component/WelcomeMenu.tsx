@@ -5,8 +5,8 @@ import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import { faFolderOpen, faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 import PathDialog from '../service/path-dialog';
 import { setConfigFile } from '../store/actions';
-import { State } from '../store';
 import logo from '../../assets/logo.png';
+import { State } from '../store/types';
 
 function WelcomeMenu(props: { setConfigFile: (payload: string) => void }) {
   const history = useHistory();

@@ -78,10 +78,14 @@ header {
 
   > nav {
     > ul {
-      width: 50%;
+      width: 60%;
       list-style-type: none;
       margin: 0;
       padding: 0;
+
+      &.fr {
+        width: 40%;
+      }
 
       > li {
         display: inline;

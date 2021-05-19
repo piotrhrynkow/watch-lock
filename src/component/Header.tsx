@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import {
+  faCodeBranch,
   faCog,
   faFileImport,
   faSave,
@@ -16,6 +17,11 @@ function Header() {
       to: '/actions',
       icon: faFileImport,
       label: 'Actions',
+    },
+    {
+      to: '/dependency-tree',
+      icon: faCodeBranch,
+      label: 'Dependency',
     },
     {
       to: '/settings',
