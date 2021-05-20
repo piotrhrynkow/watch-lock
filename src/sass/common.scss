@@ -78,18 +78,22 @@ header {
 
   > nav {
     > ul {
-      width: 60%;
+      width: 50%;
+      display: inline-block;
       list-style-type: none;
       margin: 0;
       padding: 0;
 
-      &.fr {
-        width: 40%;
+      &.left {
+        width: 85%;
+      }
+      &.right {
+        width: 15%;
       }
 
       > li {
-        display: inline;
-        padding: 5%;
+        display: inline-block;
+        padding: 3vw;
 
         &:hover {
           background-color: $gray-active-color;
