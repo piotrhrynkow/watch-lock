@@ -1,7 +1,7 @@
 {
   "name": "watch-lock",
   "productName": "watch-lock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Watch and update your composer.lock files",
   "homepage": "https://github.com/piotrhrynkow/watch-lock#readme",
   "main": "./main.prod.js",

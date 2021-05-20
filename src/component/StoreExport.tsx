@@ -17,7 +17,7 @@ import { State } from '../store/types';
 import SaveDialog from '../service/save-dialog';
 import { setConfigFile } from '../store/actions';
 
-function StoreExport(props: { children: any; className: string }) {
+function StoreExport(props: { children: any; className?: string|null }) {
   const reservedIds: string[] = [];
 
   const store = useStore();

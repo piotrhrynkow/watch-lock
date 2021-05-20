@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon as FA } from '@fortawesome/react-fontawesome';
 import {
+  faCodeBranch,
   faCog,
   faFileImport,
   faSave,
@@ -16,6 +17,11 @@ function Header() {
       to: '/actions',
       icon: faFileImport,
       label: 'Actions',
+    },
+    {
+      to: '/dependency-tree',
+      icon: faCodeBranch,
+      label: 'Dependency',
     },
     {
       to: '/settings',
@@ -34,7 +40,7 @@ function Header() {
   const listNavLi = navList.map((item: NavItem) => (
     <li
       key={item.label}
-      className="fl clickable"
+      className="clickable"
       onClick={() => goToRoute(item.to)}
     >
       <FA icon={item.icon} /> {item.label}
@@ -45,17 +51,16 @@ function Header() {
     <>
       <header className="mb-5p">
         <nav>
-          <ul className="fl">{listNavLi}</ul>
-          <ul className="fr">
+          <ul className="left">{listNavLi}</ul>
+          <ul className="right">
             {location.pathname === '/settings' && (
-              <li className="fr">
-                <StoreExport className="clickable">
+              <li className="clickable">
+                <StoreExport>
                   <FA icon={faSave} /> Save
                 </StoreExport>
               </li>
             )}
           </ul>
-          <div className="clrb" />
         </nav>
       </header>
     </>
